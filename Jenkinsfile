@@ -5,7 +5,7 @@ pipeline {
       steps {
         bat 'gradle build'
         bat 'gradle myJavadocs'
-        bat 'gradle generateMatrixAPI'
+        archiveArtifacts(artifacts: 'build/libs/*.jar', onlyIfSuccessful: true)
       }
     }
     stage('MailNotification') {
