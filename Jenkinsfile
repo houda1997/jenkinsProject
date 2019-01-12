@@ -13,14 +13,6 @@ pipeline {
         mail(subject: 'Build Finish', body: 'le build a terminer', to: 'fi_neddar@esi.dz')
       }
     }
-    stage('CodeAnalysis') {
-      steps {
-        withSonarQubeEnv('My SonarQube Server') {
-          bat 'gradlew --info sonarqube'
-        }
-
-      }
-    }
     stage('TestReporting') {
       steps {
         jacoco(buildOverBuild: true)
