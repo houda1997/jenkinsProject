@@ -18,9 +18,9 @@ pipeline {
       steps {
         withSonarQubeEnv(soanarqube) {
           bat './gradlew --info sonarqube'
+          waitForQualityGate true
         }
 
-        waitForQualityGate true
       }
     }
     stage('TestReporting') {
