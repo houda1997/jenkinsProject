@@ -16,9 +16,10 @@ pipeline {
     }
     stage('CodeAnalysis') {
       steps {
-        withSonarQubeEnv 'soanarqube'{
-         bat 'gradle sonarqube' 
+        withSonarQubeEnv(soanarqube) {
+          sh './gradlew --info sonarqube'
         }
+
         waitForQualityGate true
       }
     }
