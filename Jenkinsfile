@@ -15,10 +15,8 @@ pipeline {
     }
     stage('CodeAnalysis') {
       steps {
-        withSonarQubeEnv('My SonarQube Server') {
-          bat './gradlew --info sonarqube'
-        }
-
+        withSonarQubeEnv 'My SonarQube Server'
+        waitForQualityGate true
       }
     }
     stage('TestReporting') {
