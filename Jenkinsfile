@@ -1,11 +1,13 @@
+
+
 pipeline {
   agent any
   stages {
     stage('Build') {
       steps {
-        sh 'gradle build'
-        sh 'gradle myJavadocs'
-        sh 'gradle generateMatrixAPI'
+        bat 'gradle build'
+        bat 'gradle myJavadocs'
+        bat 'gradle generateMatrixAPI'
       }
     }
     stage('MailNotification') {
@@ -16,7 +18,7 @@ pipeline {
     stage('CodeAnalysis') {
       steps {
         withSonarQubeEnv('My SonarQube Server') {
-          sh 'sh \'./gradlew --info sonarqube\''
+          bat \'./gradlew --info sonarqube\'
         }
 
       }
@@ -28,7 +30,7 @@ pipeline {
     }
     stage('Deployment') {
       steps {
-        sh 'gradle deployJar'
+        bat 'gradle deployJar'
       }
     }
     stage('SlackNotification') {
