@@ -6,6 +6,7 @@ pipeline {
         bat 'gradle build'
         bat 'gradle myJavadocs'
         archiveArtifacts(artifacts: 'build/libs/*.jar', onlyIfSuccessful: true)
+        archiveArtifacts(artifacts: 'build/docs/javadoc/*', onlyIfSuccessful: true)
       }
     }
     stage('MailNotification') {
