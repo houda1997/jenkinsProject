@@ -14,6 +14,13 @@ pipeline {
         mail(subject: 'Build Finish', body: 'le build a terminer', to: 'fi_neddar@esi.dz')
       }
     }
+    stage('CodeAnalysis){
+        steps{
+
+
+        }
+
+    }
     stage('TestReporting') {
       steps {
         jacoco(buildOverBuild: true)
