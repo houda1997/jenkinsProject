@@ -15,10 +15,7 @@ pipeline {
     }
     stage('CodeAnalysis') {
       steps {
-        withSonarQubeEnv('My SonarQube Server') {
-          waitForQualityGate true
-        }
-
+        waitForQualityGate true
       }
     }
     stage('TestReporting') {
