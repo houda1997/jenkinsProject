@@ -18,14 +18,14 @@ pipeline {
       steps {
         withSonarQubeEnv(soanarqube) {
           bat './gradlew --info sonarqube'
-          waitForQualityGate true
         }
 
+        waitForQualityGate true
       }
     }
     stage('TestReporting') {
       steps {
-        jacoco(buildOverBuild: true)
+        jacoco(buildOverBuild: true, maximumComplexityCoverage: '70')
       }
     }
     stage('Deployment') {
