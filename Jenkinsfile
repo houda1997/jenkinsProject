@@ -14,11 +14,14 @@ pipeline {
         mail(subject: 'Build Finish', body: 'le build a terminer', to: 'fi_neddar@esi.dz')
       }
     }
-    stage('CodeAnalysis){
-        steps{
-
-
-        }
+    stage('CodeAnalysis') {
+          steps {
+            withSonarQubeEnv('soanarqube') {
+                  // requires SonarQube Scanner for Gradle 2.1+
+                  // It's important to add --info because of SONARJNKNS-281
+                  bat 'gradlew --info sonarqube'
+            }
+          }
 
     }
     stage('TestReporting') {
