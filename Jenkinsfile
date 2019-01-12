@@ -16,10 +16,9 @@ pipeline {
     stage('CodeAnalysis') {
       steps {
         withSonarQubeEnv('My SonarQube Server') {
-              // requires SonarQube Scanner for Gradle 2.1+
-              // It's important to add --info because of SONARJNKNS-281
-              bat 'gradlew --info sonarqube'
-            }
+          bat 'gradlew --info sonarqube'
+        }
+
       }
     }
     stage('TestReporting') {
