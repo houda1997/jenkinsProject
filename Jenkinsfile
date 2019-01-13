@@ -10,30 +10,33 @@ pipeline {
       }
     }
     stage('MailNotification') {
-      steps {
-        mail(subject: 'Build Finish', body: 'le build a terminer', to: 'fi_neddar@esi.dz')
+      post {
+            failure {
+              mail(subject: 'Build Finish', body: 'le build a echouee', to: 'fi_neddar@esi.dz')
+            }
+            success {
+              mail(subject: 'Build Finish', body: 'le build a terminer', to: 'fi_neddar@esi.dz')
+            }
       }
     }
-    stage('CodeAnalysis') {
-      steps {
-        withSonarQubeEnv(sonareqube) {
-          bat(script: 'gradle sonarqube', returnStdout: true, returnStatus: true)
-        }
+    stage('Code Analysis') {
+          parallel {
+            stage('Code Analysis') {
+              steps {
+                withSonarQubeEnv('sonarqube') {
+                  bat 'sonar-scanner'
+                }
 
-      }
-    }
-    stage('Quality Gate') {
-      steps {
-        timeout(time: 1, unit: 'HOURS') {
-          waitForQualityGate true
+                waitForQualityGate true
+              }
+            }
+            stage('Test Reporting') {
+              steps {
+                jacoco(buildOverBuild: true,maximumComplexityCoverage: '70')
+              }
+            }
+          }
         }
-
-      }
-    }
-    stage('TestReporting') {
-      steps {
-        jacoco(buildOverBuild: true, maximumComplexityCoverage: '70')
-      }
     }
     stage('Deployment') {
       steps {
