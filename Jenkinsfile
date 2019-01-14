@@ -8,10 +8,6 @@ pipeline {
         archiveArtifacts(artifacts: 'build/libs/*.jar', onlyIfSuccessful: true)
         archiveArtifacts(artifacts: 'build/docs/javadoc/*', onlyIfSuccessful: true)
       }
-    }
-    stage('MailNotification') {
-      steps {
-      }
       post {
             failure {
               mail(subject: 'Build Finish', body: 'le build a echouee', to: 'fi_neddar@esi.dz')
@@ -21,6 +17,7 @@ pipeline {
             }
       }
     }
+   
     stage('Code Analysis') {
       parallel {
           stage('Code Analysis') {
