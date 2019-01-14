@@ -25,12 +25,9 @@ pipeline {
       parallel {
         stage('Code Analysis') {
           agent any
-          environment {
-            sonar = 'C:\\Users\\ISLEM\\Downloads\\Compressed\\sonar-scanner-cli-3.3.0.1492-windows\\sonar-scanner-3.3.0.1492-windows\\bin'
-          }
           steps {
             withSonarQubeEnv('sonarqube') {
-              bat '${sonar}\\sonar-scanner'
+              bat 'C:\\Users\\ISLEM\\Downloads\\Compressed\\sonar-scanner-cli-3.3.0.1492-windows\\sonar-scanner-3.3.0.1492-windows\\bin\\sonar-scanner'
             }
 
             waitForQualityGate true
