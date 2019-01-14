@@ -20,23 +20,22 @@ pipeline {
       }
     }
     stage('Code Analysis') {
-          parallel {
-            stage('Code Analysis') {
-              steps {
-                withSonarQubeEnv('sonarqube') {
-                  bat 'sonar-scanner'
-                }
+      parallel {
+          stage('Code Analysis') {
+            steps {
+              withSonarQubeEnv('sonarqube') {
+                bat 'sonar-scanner'
+              }
 
-                waitForQualityGate true
-              }
-            }
-            stage('Test Reporting') {
-              steps {
-                jacoco(buildOverBuild: true,maximumComplexityCoverage: '70')
-              }
+              waitForQualityGate true
             }
           }
-        }
+          stage('Test Reporting') {
+            steps {
+              jacoco(buildOverBuild: true,maximumComplexityCoverage: '70')
+            }
+          }
+      }
     }
     stage('Deployment') {
       steps {
