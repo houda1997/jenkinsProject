@@ -10,6 +10,8 @@ pipeline {
       }
     }
     stage('MailNotification') {
+      steps {
+      }
       post {
             failure {
               mail(subject: 'Build Finish', body: 'le build a echouee', to: 'fi_neddar@esi.dz')
