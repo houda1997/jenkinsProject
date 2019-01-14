@@ -1,0 +1,7 @@
+-d 'C:\\Users\\ISLEM\\Desktop\\Etude\\2CS\\S1\\Outils\\TP\\Jenkins\\Solution\\jenkinsProject\\build\\docs\\javadoc'
+-doctitle 'jenkins API'
+-quiet 
+-windowtitle 'jenkins API'
+'C:\\Users\\ISLEM\\Desktop\\Etude\\2CS\\S1\\Outils\\TP\\Jenkins\\Solution\\jenkinsProject\\src\\main\\java\\com\\example\\exception\\NoSquareException.java'
+'C:\\Users\\ISLEM\\Desktop\\Etude\\2CS\\S1\\Outils\\TP\\Jenkins\\Solution\\jenkinsProject\\src\\main\\java\\com\\example\\model\\Matrix.java'
+'C:\\Users\\ISLEM\\Desktop\\Etude\\2CS\\S1\\Outils\\TP\\Jenkins\\Solution\\jenkinsProject\\src\\main\\java\\com\\example\\service\\MatrixMathematics.java'
