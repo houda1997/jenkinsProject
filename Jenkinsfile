@@ -41,11 +41,17 @@ pipeline {
       }
     }
     stage('Deployment') {
+    when {
+        branch 'master'
+      }
       steps {
         bat 'gradle deployJar'
       }
     }
     stage('SlackNotification') {
+    when {
+        branch 'master'
+      }
       steps {
         slackSend(baseUrl: 'https://tpgulp.slack.com/services/hooks/jenkins-ci/', channel: 'tpci-jenkins', failOnError: true, message: 'build and deployment finish', token: 'GXZd5JU7W2eJqhGQgcfB92Dd')
       }
