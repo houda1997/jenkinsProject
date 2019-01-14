@@ -24,9 +24,12 @@ pipeline {
     stage('Code Analysis') {
       parallel {
         stage('Code Analysis') {
+          environment{
+            sonarHome : tool 'sonar'
+          }
           steps {
             withSonarQubeEnv('sonarqube') {
-              bat 'sonar-scanner'
+              bat "${sonarHome}\\sonar-scanner"
             }
 
             waitForQualityGate true
