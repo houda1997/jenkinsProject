@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Test Reporting') {
           steps {
-            jacoco(buildOverBuild: true)
+            jacoco()
           }
         }
       }
