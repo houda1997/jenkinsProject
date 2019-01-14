@@ -30,7 +30,6 @@ pipeline {
               bat 'C:\\Users\\ISLEM\\Downloads\\Compressed\\sonar-scanner-cli-3.3.0.1492-windows\\sonar-scanner-3.3.0.1492-windows\\bin\\sonar-scanner'
             }
 
-            waitForQualityGate true
           }
         }
         stage('Test Reporting') {
